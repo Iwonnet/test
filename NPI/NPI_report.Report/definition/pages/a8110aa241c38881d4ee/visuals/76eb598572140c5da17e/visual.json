@@ -1,0 +1,279 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "76eb598572140c5da17e",
+  "position": {
+    "x": 870.4,
+    "y": 91.806896551724137,
+    "z": 11000,
+    "height": 619,
+    "width": 271.88965517241377
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPI_source"
+                    }
+                  },
+                  "Property": "PLN"
+                }
+              },
+              "queryRef": "NPI_source.PLN",
+              "nativeQueryRef": "PLN",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPI_source"
+                    }
+                  },
+                  "Property": "NPI Trial Name"
+                }
+              },
+              "queryRef": "NPI_source.NPI Trial Name",
+              "nativeQueryRef": "NPI Trial Name",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPI_source"
+                    }
+                  },
+                  "Property": "Pattern"
+                }
+              },
+              "queryRef": "NPI_source.Pattern",
+              "nativeQueryRef": "Pattern",
+              "active": false
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selfFilter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "n",
+                    "Entity": "NPI_source",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Or": {
+                        "Left": {
+                          "Or": {
+                            "Left": {
+                              "Contains": {
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "n"
+                                      }
+                                    },
+                                    "Property": "PLN"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'BK'"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Contains": {
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "n"
+                                      }
+                                    },
+                                    "Property": "NPI Trial Name"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "'BK'"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Right": {
+                          "Contains": {
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "n"
+                                  }
+                                },
+                                "Property": "Pattern"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'BK'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Annotations": {
+                      "PowerBI.MParameterBehavior": 1
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "header": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.3
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'PLN/Category/Pattern'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "Pattern",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

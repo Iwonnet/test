@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "NPI_report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ff4a416c-6321-4c22-8d2b-593daedc4c6f"
+  }
+}

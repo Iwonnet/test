@@ -1,0 +1,330 @@
+table 'Key Measures'
+	lineageTag: 57c13ca8-0c72-4449-882c-5de5b81434d9
+
+	measure RFQ-PO = DATEDIFF(FIRSTDATE(NPI_source[RFQ Date]),FIRSTDATE(NPI_source[PO Date]),DAY)
+		formatString: 0
+		lineageTag: a5535b15-f00f-4b46-ac0b-62f8a893c0e3
+
+	measure PO-TOOL = ```
+			DATEDIFF(FIRSTDATE(NPI_source[PO Date]),FIRSTDATE(NPI_source[Tool Date]),DAY) 
+			```
+		formatString: 0
+		lineageTag: c328b3d8-b6a4-4a5e-b645-923c195bfd91
+
+	measure MFG-ONSITE = DATEDIFF(FIRSTDATE(NPI_source[Manufacturing Date]),FIRSTDATE(NPI_source[Pieces on Site Date]),DAY)
+		formatString: 0
+		lineageTag: 7ed02512-c35c-48ae-8e05-4d688b15dcdf
+
+	measure ONSITE-TRIAL = DATEDIFF(FIRSTDATE(NPI_source[Pieces on Site Date]),FIRSTDATE(NPI_source[Trial Start Date]),DAY)
+		formatString: 0
+		lineageTag: 84a0b7cc-3914-4933-a9dc-0245e583caf2
+
+	measure StartDate = FIRSTDATE('Date'[Date])
+		formatString: General Date
+		lineageTag: ec60e83b-df71-445a-97f3-1c1806eb2b0a
+
+	measure EndDate = ```
+			LASTDATE('Date'[Date]) 
+			```
+		formatString: General Date
+		lineageTag: 5b31d82d-8da4-4699-9807-89d52b99cd26
+
+	measure 'Pieces awaiting Trial days' = ```
+			DATEDIFF(FIRSTDATE(NPI_source[Trial Start Date]),FIRSTDATE(NPI_source[Pieces on Site Date]),DAY) 
+			```
+		formatString: 0
+		lineageTag: c161e8ea-1781-465b-aee2-e6d9550a7c3e
+
+	measure 'Avg RFQ-PO' =
+			CALCULATE(AVERAGE(NPI_source[RFQ-PO days number]),
+			                REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]))
+		formatString: 0
+		lineageTag: db44b488-d254-430a-9acc-ccd8254a7353
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG PO-TOOL/RM' = ```
+			CALCULATE(AVERAGE(NPI_source[PO-TOOL days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name])) 
+			```
+		formatString: 0
+		lineageTag: 5e91d878-3942-4173-994d-9abcf2da5e4c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Median RFQ-PO' = CALCULATE(MEDIAN(NPI_source[RFQ-PO days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]) )
+		formatString: 0
+		lineageTag: 2c23321b-885b-41dd-8f6d-934a880daf6d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG TOOL-MFG' = CALCULATE(AVERAGE(NPI_source[TOOL-MFG days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]))
+		formatString: 0
+		lineageTag: 7018a079-a6da-4221-bc41-99a199ef16d6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG ONSITE-TRIAL' = CALCULATE(AVERAGE(NPI_source[ONSITE-TRIAL days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]))
+		formatString: 0
+		lineageTag: 9f79e35a-5e10-4296-b87e-ea4039dfa9ce
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Median TOOL-MFG' = CALCULATE(MEDIAN(NPI_source[TOOL-MFG days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]) )
+		formatString: 0
+		lineageTag: a7e3b61e-db0d-4996-ab9a-05e92e7dcd86
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Median PO-TOOL' = CALCULATE(MEDIAN(NPI_source[PO-TOOL days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]) )
+		formatString: 0
+		lineageTag: f3d9d21f-ed5d-430b-ae64-2482c8af903e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Median ONSITE-TRIAL' = CALCULATE(MEDIAN(NPI_source[ONSITE-TRIAL days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]) )
+		formatString: 0
+		lineageTag: d9bcd164-a0eb-4a51-aa7d-43e275908f05
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure TOOL-MFG = ```
+			DATEDIFF(FIRSTDATE(NPI_source[Tool Date]),FIRSTDATE(NPI_source[Manufacturing Date]),DAY) 
+			```
+		formatString: 0
+		lineageTag: 288fc477-74f6-4997-bbe0-8806d31cba65
+
+	measure 'AVG MFG-ONSITE' = CALCULATE(AVERAGE(NPI_source[MFG-ONSITE days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]))
+		formatString: 0
+		lineageTag: a6f45382-b686-43b3-971c-e5464fe77884
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Median MFG-ONSITE' = CALCULATE(MEDIAN(NPI_source[MFG-ONSITE days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]) )
+		formatString: 0
+		lineageTag: 81059eb1-f31c-4b26-ac81-48f3f33198eb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG ALL RFQ-PO' = AVERAGE(NPI_source[RFQ-PO days number])
+		formatString: 0
+		lineageTag: 1f0a92f5-dde6-408c-9b17-b31b652d4ff6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure IsCustomerFiltered = CALCULATE(INT(ISFILTERED('NPI_source'[Customer Name])),ALLSELECTED('NPI_source'))
+		formatString: 0
+		lineageTag: ee54e528-deeb-4bb4-be12-fb7d2a4bbc83
+
+	measure IsNPITrialFiltered = CALCULATE(INT(ISFILTERED('NPI_source'[NPI Trial Name])),ALLSELECTED('NPI_source'))
+		formatString: 0
+		lineageTag: f8e70158-3f79-46d2-a904-b2c660c48351
+
+	measure IsRegionFiltered = CALCULATE(INT(ISFILTERED('NPI_source'[Region])),ALLSELECTED('NPI_source'))
+		formatString: 0
+		lineageTag: 60bf3ff4-6e41-4db2-8374-884c9eec5278
+
+	measure 'AVG ALL PO-TOOL' = CALCULATE(AVERAGE(NPI_source[PO-TOOL days number]),USERELATIONSHIP('NPI_source'[PO Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: cdd0627e-5a4e-4385-b36e-497862dc0dfc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG ALL TOOL/RM-MFG' = CALCULATE(AVERAGE(NPI_source[TOOL-MFG days number]),USERELATIONSHIP('NPI_source'[Tool Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: efc1b331-62b3-41f6-b752-d9e9cec8e390
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG ALL MFG-ONSITE' = CALCULATE(AVERAGE(NPI_source[MFG-ONSITE days number]),USERELATIONSHIP('NPI_source'[Manufacturing Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: c487f4c6-5ab4-47ea-8db3-020e58e9fc54
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG ALL ONSITE-TRIAL' = CALCULATE(AVERAGE(NPI_source[ONSITE-TRIAL days number]),USERELATIONSHIP('NPI_source'[Pieces on Site Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 7ec66800-4676-4d62-b188-9be76937236a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MEDIAN ALL RFQ-PO' = MEDIAN(NPI_source[RFQ-PO days number])
+		formatString: 0
+		lineageTag: a2a14bc0-754b-43f4-9235-d2f66523f559
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MEDIAN ALL PO-TOOL' = CALCULATE(MEDIAN(NPI_source[PO-TOOL days number]),USERELATIONSHIP('NPI_source'[PO Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 5c22fcc7-2c53-4ac3-97ec-76247444213e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MEDIAN ALL TOOL-MFG' = CALCULATE(MEDIAN(NPI_source[TOOL-MFG days number]),USERELATIONSHIP('NPI_source'[Tool Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 393861e4-71b9-4f86-8313-7ccbfa21a887
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MEDIAN ALL MFG-ONSITE' = CALCULATE(MEDIAN(NPI_source[MFG-ONSITE days number]),USERELATIONSHIP('NPI_source'[Manufacturing Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 647d28a2-51e0-49fa-ae88-463dedd25729
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MEDIAN ALL ONSITE-TRIAL' = CALCULATE(MEDIAN(NPI_source[ONSITE-TRIAL days number]),USERELATIONSHIP('NPI_source'[Pieces on Site Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 24c923a9-98ad-4b23-89ec-f25508991a63
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure IsCountryFiltered = CALCULATE(INT(ISFILTERED('NPI_source'[Country])),ALLSELECTED('NPI_source'))
+		formatString: 0
+		lineageTag: 0a49c79a-25c0-4c7b-a627-b5f0f1ef6515
+
+	measure Username = USERPRINCIPALNAME()
+		lineageTag: 53e48977-d8a1-4235-8c9b-167b222300e6
+
+	measure Username2 = USERNAME()
+		lineageTag: 680719c5-1f12-40fb-87cb-322fd8eb9b19
+
+	measure 'Number of trials per Customer' = COUNT('NPI_source'[ID])
+		formatString: 0
+		lineageTag: b93c32cb-217e-4d4a-babf-7eb6a5384c3a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure IsPLNFiltered = CALCULATE(INT(ISFILTERED('NPI_source'[PLN])),ALLSELECTED('NPI_source'))
+		formatString: 0
+		lineageTag: cd4aebe9-4f50-4b47-916f-23bcc9e3e3f3
+
+	measure 'Priority NR' = COUNT('NPI_source'[Priority])
+		formatString: 0
+		lineageTag: ccbad904-914c-4188-b0eb-2baa1ea40c6a
+
+	measure 'AVG ALL TRIAL-COMPLETE' = CALCULATE(AVERAGE(NPI_source[TRIAL-COMPLETE days number]),USERELATIONSHIP('NPI_source'[Trial Start Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 812d4e3b-a5ba-4b7b-8fe8-70db2912665f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MEDIAN ALL TRIAL-COMPLETE' = CALCULATE(MEDIAN(NPI_source[TRIAL-COMPLETE days number]),USERELATIONSHIP('NPI_source'[Trial Start Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: e0c729fe-4e81-41f0-b7e0-b7261bce02d4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG TRIAL-COMPLETE' = CALCULATE(AVERAGE(NPI_source[TRIAL-COMPLETE days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]))
+		formatString: 0
+		lineageTag: 673a88fc-9afd-48fc-97cf-f2d4f237382e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Median TRIAL-COMPLETE' = CALCULATE(MEDIAN(NPI_source[TRIAL-COMPLETE days number]),REMOVEFILTERS(NPI_source),VALUES(NPI_source[NPI Trial Name]) )
+		formatString: 0
+		lineageTag: 4815bbd6-f255-466c-83da-694dc20e4dfc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'NR RFQ' = CALCULATE(COUNT('NPI_source'[Status]) ,FILTER('NPI_source','NPI_source'[Status]="RFQ"))
+		formatString: 0
+		lineageTag: 61a437a7-a067-4acf-9a0a-8a3d023e1a81
+
+	measure 'NR PO' = CALCULATE(COUNT('NPI_source'[Status]) ,FILTER('NPI_source','NPI_source'[Status]="PO"))
+		formatString: 0
+		lineageTag: ea6a9c3f-d182-4cac-b5a0-29facabff797
+
+	measure 'NR MFG' = CALCULATE(COUNT('NPI_source'[Status]) ,FILTER('NPI_source','NPI_source'[Status]="Manufacturing"))
+		formatString: 0
+		lineageTag: cc102061-dfe8-4792-aeb7-f6891347ce62
+
+	measure 'NR ONSITE' = CALCULATE(COUNT('NPI_source'[Status]) ,FILTER('NPI_source','NPI_source'[Status]="Pieces on site"))
+		formatString: 0
+		lineageTag: 42dff19d-ebff-4909-93c6-1db64c29bb12
+
+	measure 'NR Trial' = CALCULATE(COUNT('NPI_source'[Status]) ,FILTER('NPI_source','NPI_source'[Status]="Trial"))
+		formatString: 0
+		lineageTag: 2a455358-ce30-4c0a-801d-7ef86cc59998
+
+	measure 'NR Tool/RM' = CALCULATE(COUNT('NPI_source'[Status]) ,FILTER('NPI_source','NPI_source'[Status]="Tool"))
+		formatString: 0
+		lineageTag: dfe392cb-e676-41f7-8b90-e35e0c74205f
+
+	measure 'SUM ALL STAGES' =
+			AVERAGEX('NPI_source',[AVG ALL MFG-ONSITE]+[AVG ALL ONSITE-TRIAL]+[AVG ALL TRIAL-COMPLETE]
+			                                +[AVG ALL PO-TOOL]+[AVG ALL RFQ-PO]+[AVG ALL TOOL/RM-MFG])
+		formatString: 0
+		lineageTag: e01a7734-4f8a-4910-8cc6-85c9f74b1e72
+
+	measure 'MIN ALL RFQ-PO' = MIN(NPI_source[RFQ-PO days number])
+		formatString: 0
+		lineageTag: 598152ee-7ab7-4b5b-ab5b-f42d5619fa8b
+
+	measure 'MIN ALL PO-TOOL' = CALCULATE(MIN(NPI_source[PO-TOOL days number]),USERELATIONSHIP('NPI_source'[PO Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: f6b9674c-787b-45c6-81bd-da0a1c11eefd
+
+	measure 'MIN ALL TOOL-MFG' = CALCULATE(MIN(NPI_source[TOOL-MFG days number]),USERELATIONSHIP('NPI_source'[Tool Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 412a3035-5360-485d-b366-dd8cbd3e1048
+
+	measure 'MIN ALL MFG-ONSITE' = CALCULATE(MIN(NPI_source[MFG-ONSITE days number]),USERELATIONSHIP('NPI_source'[Manufacturing Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 09326936-4dbc-48e1-a470-f4e7bab90dee
+
+	measure 'MIN ALL ONSITE-TRIAL' = CALCULATE(MIN(NPI_source[ONSITE-TRIAL days number]),USERELATIONSHIP('NPI_source'[Pieces on Site Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 113b306a-4b0d-408c-8931-6e06951555ce
+
+	measure 'MIN ALL TRIAL-COMPLETE' = CALCULATE(MIN(NPI_source[TRIAL-COMPLETE days number]),USERELATIONSHIP('NPI_source'[Trial Start Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: dabd0806-f527-42c5-a6ee-3cd02e26dd8b
+
+	measure 'MAX ALL RFQ-PO' = MAX(NPI_source[RFQ-PO days number])
+		formatString: 0
+		lineageTag: 3ceddca6-948e-4d80-923a-cd2a2f417047
+
+	measure 'MAX ALL PO-TOOL/RM' = CALCULATE(MAX(NPI_source[PO-TOOL days number]),USERELATIONSHIP('NPI_source'[PO Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: 5e6c3629-7650-4761-80fc-fa3313725045
+
+	measure 'MAX ALL TOOL/RM-MFG' = CALCULATE(MAX(NPI_source[TOOL-MFG days number]),USERELATIONSHIP('NPI_source'[Tool Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: c93af925-78a4-41eb-be4f-e15a6b372ee4
+
+	measure 'MAX ALL MFG-ONSITE' = CALCULATE(MAX(NPI_source[MFG-ONSITE days number]),USERELATIONSHIP('NPI_source'[Manufacturing Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: ed46aaed-9fad-40da-9411-be781c27104a
+
+	measure 'MAX ALL ONSITE-TRIAL' = CALCULATE(MAX(NPI_source[ONSITE-TRIAL days number]),USERELATIONSHIP('NPI_source'[Pieces on Site Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: d7ab35a0-dafc-41f0-ac94-dc33b45b0413
+
+	measure 'MAX ALL TRIAL-COMPLETE' = CALCULATE(MAX(NPI_source[TRIAL-COMPLETE days number]),USERELATIONSHIP('NPI_source'[Trial Start Date],'Date'[Date]))
+		formatString: 0
+		lineageTag: c016a094-7e27-4c53-97c0-43c5fe31066a
+
+	measure 'SUM2 ALL STAGES' =
+			AVERAGEX('NPI_source',[AVG ALL MFG-ONSITE]+[AVG ALL ONSITE-TRIAL]+[AVG ALL TRIAL-COMPLETE]
+			                                +[AVG ALL PO-TOOL]+[AVG ALL RFQ-PO]+[AVG ALL TOOL/RM-MFG])
+		lineageTag: 2b04a0e8-197e-445f-b880-0a5570504751
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TOTAL NR' = ```
+			[NR MFG]+[NR PO]+[NR RFQ]+[NR Tool/RM]+[NR ONSITE]+[NR Trial] 
+			```
+		formatString: 0
+		lineageTag: 88d7e241-8560-4962-9c57-e877ebfcea38
+
+	partition 'Key Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "Bookmarkef5b4f378c026bc9e7af",
+      "displayName": "NPIQty",
+      "children": [
+        "Bookmark989469d414705bfb0d73",
+        "Bookmark0b96a44bbeb8f54c3413",
+        "Bookmarka1d42547327691f52c58",
+        "Bookmark3953ec9714d7c20026fc",
+        "Bookmarkd89caac34386c7b77553"
+      ]
+    },
+    {
+      "name": "Bookmark481fe26cc0756621c514",
+      "displayName": "AVG",
+      "children": [
+        "Bookmark7021532e6b7216483a50",
+        "Bookmarkf977d32ad5bfe2920c86",
+        "Bookmark4c4e8f4abe6e958c2a21",
+        "Bookmark6c7725307c4c67f3366c",
+        "Bookmark1f025fa68d7846eae2ed"
+      ]
+    },
+    {
+      "name": "Bookmark447d951607146c871bb0",
+      "displayName": "Median",
+      "children": [
+        "Bookmarkeea7e94d9fda593492b6",
+        "Bookmark35bff0962a1fc9ef8edf",
+        "Bookmarkfed37a0ab53eec2c13fa",
+        "Bookmark463f07b45951262d128f",
+        "Bookmark8e99eda5cca41e0f692e"
+      ]
+    },
+    {
+      "name": "Bookmark52ad7c19394a8bee978e",
+      "displayName": "NRTrials",
+      "children": [
+        "Bookmarkcf82f1ec7028395c51dc"
+      ]
+    },
+    {
+      "name": "Bookmark3582939068da6b7b8be3",
+      "displayName": "Timeline 2",
+      "children": [
+        "Bookmarkd2a8f1905079b2121c25",
+        "Bookmarkf5918d6493200dc1c987",
+        "Bookmark4f6e5d236d5d3667396c",
+        "Bookmarkb973427244ebda3abe59",
+        "Bookmark6df7ef1e0e5c98e1a2cd"
+      ]
+    },
+    {
+      "name": "Bookmark944ae46b1957e0582afd",
+      "displayName": "AverageTable",
+      "children": [
+        "Bookmarkbdc09fffd55a07e0300a",
+        "Bookmarkb21d97d310ce04bca8b5",
+        "Bookmark3b7d25963b4bdeb5c019",
+        "Bookmark4603f07a2f6f5ed8c7fd",
+        "Bookmark9b3c9a64210dc5840c56"
+      ]
+    },
+    {
+      "name": "Bookmark3d12d6fe2069c7cd5868",
+      "displayName": "MedianTable",
+      "children": [
+        "Bookmarkc633861cc488cbc20e72",
+        "Bookmark306b8c12a129800266de",
+        "Bookmark57ce4ee39e73d0d4deae",
+        "Bookmarkf2f6cfc57dbbe411cb08",
+        "Bookmark60a46b21b965c174a860"
+      ]
+    },
+    {
+      "name": "Bookmarkcbac10f36aee330844e6",
+      "displayName": "Projects",
+      "children": [
+        "Bookmark9ada9bc9a550e3001052",
+        "Bookmarkc25804ad31b22ed75661",
+        "Bookmark6fba865358422b5ecb32",
+        "Bookmark1cb94d978a3039771c18",
+        "Bookmark5b73490dae0d9567ac32"
+      ]
+    },
+    {
+      "name": "Bookmarkd89dd90dedba487a9800",
+      "displayName": "MAP",
+      "children": [
+        "Bookmarka92734bc71ec2e4c05dc",
+        "Bookmarkcea9e63b514082a621c2"
+      ]
+    },
+    {
+      "name": "Bookmark6427b7b1e2311a4a3700",
+      "displayName": "MIN2",
+      "children": [
+        "Bookmark6bc1c6b3dab68c6c001a",
+        "Bookmark4a45caad9e03c1a3e7a9",
+        "Bookmark97a77b90c1268832ba47",
+        "Bookmarkf54e60202503650ea92d",
+        "Bookmark5b660c526a3e32ce6599",
+        "Bookmark893cd009003ea4299c48"
+      ]
+    },
+    {
+      "name": "Bookmark27b13ca03ded64009007",
+      "displayName": "minMaxAvg",
+      "children": [
+        "Bookmarkb3d6d42b86369e68e70d",
+        "Bookmarke59b53f74341b7400a60",
+        "Bookmarke574b48381e428dd37e9",
+        "Bookmarkc8b24c4029157b7ba9a3",
+        "Bookmark7c4e82f27248d7eb0128"
+      ]
+    },
+    {
+      "name": "Bookmarkf31faa0b9b44b0e03107",
+      "displayName": "ProjectsReg",
+      "children": [
+        "Bookmark8827d7757ace03514060",
+        "Bookmark0dfc13610e6344e8685a",
+        "Bookmark1cc4aa9048e4d480aa05",
+        "Bookmarkb13430d293886e604030",
+        "Bookmark3e056766ab359071b223",
+        "Bookmark42e52d0356558ba968cb"
+      ]
+    },
+    {
+      "name": "Bookmark9d8dc6f2810e19258a00",
+      "displayName": "MAX",
+      "children": [
+        "Bookmarkbd32c2e486be1456e9de",
+        "Bookmarkf9f44790655634c00364",
+        "Bookmarkab5f4f95b82c01057d0b",
+        "Bookmark90700d52218090a74c17",
+        "Bookmark60cc9fd0895b3d2828d9"
+      ]
+    },
+    {
+      "name": "Bookmarkfdd6510ee56c5b4f2102",
+      "displayName": "NPIPLN",
+      "children": [
+        "Bookmark8247e3c9edf546710333",
+        "Bookmark0c1c9b8d96e3a92690d8",
+        "Bookmark417972a9a6060a313734",
+        "Bookmarkf449a832b2a03f870a6f",
+        "Bookmark8446ee77c4ae840019a3"
+      ]
+    }
+  ]
+}

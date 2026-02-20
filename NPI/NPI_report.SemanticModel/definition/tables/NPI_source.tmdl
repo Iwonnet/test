@@ -1,0 +1,525 @@
+table NPI_source
+	lineageTag: 44b6e38d-eba8-46a3-854e-c39e486fdb3e
+
+	measure RFQ = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="RFQ")) 
+			```
+		formatString: 0
+		lineageTag: 390cb206-ec23-4bbe-93e0-60ab112c79cb
+
+	measure PO = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="PO")) 
+			```
+		formatString: 0
+		lineageTag: c7e4d492-ca7e-482e-9d0c-24f75f9eedf3
+
+	measure Manufacturing = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Manufacturing")) +
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Tool")) 
+			```
+		formatString: 0
+		lineageTag: e515dbe5-bec4-40f6-a66e-d969b530903c
+
+	measure Tool = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Tool")) 
+			```
+		formatString: 0
+		lineageTag: d08905fa-336f-4e2a-bf4a-78d96dbaec37
+
+	measure 'Pieces on site' = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Pieces on site")) 
+			```
+		formatString: 0
+		lineageTag: 6e68c3fd-c93d-4f90-b502-53f432943260
+
+	measure Trial = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Trial")) 
+			```
+		formatString: 0
+		lineageTag: 30a536d1-1721-4981-9f53-540d95fa502c
+
+	measure Complete = ```
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Complete")) 
+			```
+		formatString: 0
+		lineageTag: e8622f28-89fb-4df2-b45d-757abe077409
+
+	measure Total =
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Manufacturing")) +
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="RFQ")) +
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="PO"))+
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Pieces on site"))+
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Trial"))+
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Complete"))+
+			CALCULATE(COUNT('NPI_source'[TrialPatternId]),FILTER('NPI_source','NPI_source'[Status]="Tool"))
+		formatString: 0
+		lineageTag: 3da9b7b1-71c2-448b-838c-a4652445344f
+
+	column Modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6350e41-9433-42ec-a50a-992de74afe02
+		summarizeBy: none
+		sourceColumn: Modified
+
+		variation Variation
+			isDefault
+			relationship: 0b471968-60a3-470a-9f6f-5790ac25e4d7
+			defaultHierarchy: LocalDateTable_7fdbd284-f44c-45e8-8ced-b64968d14441.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6adc9ec8-68b9-487c-91fc-c22f3c41dc80
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variation
+			isDefault
+			relationship: 35a84d3a-5420-45a1-a101-325dd97757ff
+			defaultHierarchy: LocalDateTable_72cdf0d4-d18a-4d3e-84ef-bcc4d75ce0d6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'NPI Trial'
+		dataType: string
+		lineageTag: 901f5e82-5a87-4f51-8ad6-795526afed88
+		summarizeBy: none
+		sourceColumn: NPI Trial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NPI Trial Name'
+		dataType: string
+		lineageTag: 783d919c-3656-42b0-bc48-f4b796ea2ee9
+		summarizeBy: none
+		sourceColumn: NPI Trial Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pattern
+		dataType: string
+		lineageTag: 98c2a67f-352d-449d-a086-0d11f401bc59
+		summarizeBy: none
+		sourceColumn: Pattern
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLN
+		dataType: string
+		lineageTag: cd29fd5e-4873-4392-8109-a5d869092e52
+		summarizeBy: none
+		sourceColumn: PLN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6138eb18-53ad-4d72-b99f-1686945805cb
+		summarizeBy: count
+		sourceColumn: Customer Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: 35fde377-0344-4479-828e-d978063a58a6
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: b55e9f0e-737b-4893-80c3-d5b4a2415d1a
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 88579ab8-9d16-4140-b384-2e6e6fc97224
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant
+		dataType: string
+		lineageTag: 650483da-9303-4e29-b4a9-7cfb9942ba7d
+		summarizeBy: none
+		sourceColumn: Plant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: f87320a5-0fc4-410f-bea5-db92399b7cdd
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: 6afda206-e7dc-4e6e-9cf2-d2c93727e738
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: a9625f25-dda4-4b9f-8102-9466019b3c2c
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column DrawingImage
+		dataType: string
+		lineageTag: b3623c92-0096-44c9-b3d8-82f1c50e9aa1
+		summarizeBy: none
+		sourceColumn: DrawingImage
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comments
+		dataType: string
+		lineageTag: adfc0aca-78f9-4267-9aeb-ff23a388ee93
+		summarizeBy: none
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RFQ Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0e759671-78b6-484b-a38e-7e62816fdb21
+		summarizeBy: none
+		sourceColumn: RFQ Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'PO Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6a9c1d8a-8cd0-47fc-9c62-a72ac0600cc0
+		summarizeBy: none
+		sourceColumn: PO Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tool Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1b237e3d-54ed-4987-a35a-de5b71f159ed
+		summarizeBy: none
+		sourceColumn: Tool Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Manufacturing Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c567f21c-c20c-40fb-a0e4-dd174bb592ca
+		summarizeBy: none
+		sourceColumn: Manufacturing Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Shipment Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a069fecf-2400-4b87-8652-dc46e72e589b
+		summarizeBy: none
+		sourceColumn: Shipment Date
+
+		variation Variation
+			isDefault
+			relationship: 54e7df19-5a22-49ca-bdf8-d809d67101b5
+			defaultHierarchy: LocalDateTable_9fccc4d2-92e0-4135-8a6c-f3f2f8c60098.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Pieces on Site Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 33033cf8-981d-4b75-af69-48eef7825dda
+		summarizeBy: none
+		sourceColumn: Pieces on Site Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Trial Start Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b323c53c-b3e0-47f9-a236-5f443c0425f8
+		summarizeBy: none
+		sourceColumn: Trial Start Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Completion Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6e1618d7-dde2-4c00-a779-42f6ae3b5567
+		summarizeBy: none
+		sourceColumn: Completion Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Next Remainder Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 874bce9c-1661-4bf4-80c8-2e43b739beab
+		summarizeBy: none
+		sourceColumn: Next Remainder Date
+
+		variation Variation
+			isDefault
+			relationship: 738061b4-00b5-49c6-bde0-66cb48e9c410
+			defaultHierarchy: LocalDateTable_52f84eca-dfc4-4cd9-8859-fa5002d9e967.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f0c01ccf-8d94-4dac-bfe0-576eb2aeb967
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RFQ to PO Blocker'
+		dataType: string
+		lineageTag: 9393b017-84d6-4112-9861-d46ed363c736
+		summarizeBy: none
+		sourceColumn: RFQ to PO Blocker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO to Tool RM Blocker'
+		dataType: string
+		lineageTag: f4daee12-90ac-4a64-857f-e93aedf1fec6
+		summarizeBy: none
+		sourceColumn: PO to Tool RM Blocker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tool RM to Mfg Blocker'
+		dataType: string
+		lineageTag: 7ae87372-6a4c-491b-ba3e-1d407666102b
+		summarizeBy: none
+		sourceColumn: Tool RM to Mfg Blocker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mfg to On Site Blocker'
+		dataType: string
+		lineageTag: bb7d85fa-a619-4e68-a0e6-61fee9167d0c
+		summarizeBy: none
+		sourceColumn: Mfg to On Site Blocker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On Site to Trial Blocker'
+		dataType: string
+		lineageTag: ff3754d8-47c4-4a48-9215-1cd88c76df43
+		summarizeBy: none
+		sourceColumn: On Site to Trial Blocker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RFQ-PO days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: a3dd67a0-75a0-4069-b0b7-b74f9b3ebc71
+		summarizeBy: sum
+		sourceColumn: RFQ-PO days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PO-TOOL days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e2be63d-0bf1-42c5-9d11-0c9636e84e6a
+		summarizeBy: sum
+		sourceColumn: PO-TOOL days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TOOL-MFG days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a2f3bea-8266-43d6-b38c-0420878f7b9a
+		summarizeBy: sum
+		sourceColumn: TOOL-MFG days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MFG-ONSITE days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61c58a85-c975-44ab-8fd5-a946f562c7be
+		summarizeBy: sum
+		sourceColumn: MFG-ONSITE days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ONSITE-TRIAL days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 584b442d-7838-4b1a-a4ac-fd85fba0d2a8
+		summarizeBy: sum
+		sourceColumn: ONSITE-TRIAL days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'status index'
+		dataType: double
+		lineageTag: f16737f5-723f-4583-8088-4a8afbc13907
+		summarizeBy: sum
+		sourceColumn: status index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Pattern distinct'
+		dataType: string
+		lineageTag: 342f9f98-c6bd-4f09-a1d5-c7f010e123d6
+		summarizeBy: none
+		sourceColumn: Pattern distinct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trial status'
+		dataType: string
+		lineageTag: 1949e830-7c0f-4e52-8eda-b4839a6589f2
+		summarizeBy: none
+		sourceColumn: Trial status
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrialPatternId
+		dataType: string
+		lineageTag: 3f2f7cb9-ce47-4723-a2c7-3b5e47b14034
+		summarizeBy: none
+		sourceColumn: TrialPatternId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TRIAL-COMPLETE days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f899ab3-8fe9-4de4-a49d-49c3a13dbad2
+		summarizeBy: sum
+		sourceColumn: TRIAL-COMPLETE days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COMPLETE days number'
+		dataType: int64
+		formatString: 0
+		lineageTag: a96406c7-9acb-48cd-a7f6-60af920faed2
+		summarizeBy: sum
+		sourceColumn: COMPLETE days number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Author
+		dataType: string
+		lineageTag: 7519f5f7-ba8f-45c9-abab-892a70e8c1b9
+		summarizeBy: none
+		sourceColumn: Author
+
+		annotation SummarizationSetBy = Automatic
+
+	column Editor
+		dataType: string
+		lineageTag: 22d2742f-b8a5-4738-a482-5d3a07360b90
+		summarizeBy: none
+		sourceColumn: Editor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition NPI_source = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\moje\PBI\sourceNPI.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"FileSystemObjectType", Int64.Type}, {"Id", Int64.Type}, {"ServerRedirectedEmbedUri", type text}, {"ServerRedirectedEmbedUrl", type any}, {"ID", Int64.Type}, {"ContentTypeId", type text}, {"Title", type text}, {"Modified", type datetime}, {"Created", type datetime}, {"AuthorId", Int64.Type}, {"EditorId", Int64.Type}, {"OData__UIVersionString", Int64.Type}, {"Attachments", type logical}, {"GUID", type text}, {"ComplianceAssetId", type text}, {"NPIProject", type text}, {"Pattern", type text}, {"PLN", type text}, {"CustomerCode", Int64.Type}, {"CustomerName", type text}, {"Country", type text}, {"Region", type text}, {"Plant", type text}, {"Quantity", Int64.Type}, {"Priority", type text}, {"Status", type text}, {"DrawingImage", type text}, {"Comments", type any}, {"RFQDate", type datetime}, {"PODate", type datetime}, {"ToolDate", type datetime}, {"ManufacturingDate", type datetime}, {"ShipmentDate", type text}, {"PiecesonSiteDate", type datetime}, {"TrialStartDate", type datetime}, {"CompletionDate", type datetime}, {"NextRemainderDate", type datetime}, {"RFQtoPOBlocker", type text}, {"POtoToolRMBlocker", type text}, {"ToolRMtoMfgBlocker", type text}, {"MfgtoOnSiteBlocker", type text}, {"OnSitetoTrialBlocker", type text}, {"OData__ColorTag", type text}, {"FirstUniqueAncestorSecurableObject", type any}, {"RoleAssignments", type any}, {"AttachmentFiles", type any}, {"ContentType", type any}, {"GetDlpPolicyTip", type any}, {"FieldValuesAsHtml", type any}, {"FieldValuesAsText", type any}, {"FieldValuesForEdit", type any}, {"File", type any}, {"Folder", type any}, {"LikedByInformation", type any}, {"ParentList", type any}, {"Properties", type any}, {"Versions", type any}, {"Author", type any}, {"Editor", type any}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"ID", "ID.1"}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Renamed Columns", each ([FileSystemObjectType] = 0)),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"FileSystemObjectType", "Id", "ServerRedirectedEmbedUri", "ServerRedirectedEmbedUrl", "OData__UIVersionString", "Attachments", "GUID", "ComplianceAssetId", "ContentTypeId", "AuthorId", "EditorId"}),
+				    #"Renamed Columns6" = Table.RenameColumns(#"Removed Columns",{{"NPIProject", "NPI Trial"}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Renamed Columns6",{{"ID.1", "ID"}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Renamed Columns2",{{"CustomerCode", "Customer Code"}, {"CustomerName", "Customer Name"}, {"RFQDate", "RFQ Date"}, {"PODate", "PO Date"}, {"ToolDate", "Tool Date"}, {"ManufacturingDate", "Manufacturing Date"}, {"ShipmentDate", "Shipment Date"}, {"PiecesonSiteDate", "Pieces on Site Date"}, {"TrialStartDate", "Trial Start Date"}, {"CompletionDate", "Completion Date"}, {"NextRemainderDate", "Next Remainder Date"}, {"RFQtoPOBlocker", "RFQ to PO Blocker"}, {"POtoToolRMBlocker", "PO to Tool RM Blocker"}, {"ToolRMtoMfgBlocker", "Tool RM to Mfg Blocker"}, {"MfgtoOnSiteBlocker", "Mfg to On Site Blocker"}, {"OnSitetoTrialBlocker", "On Site to Trial Blocker"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns1",{"FieldValuesForEdit", "File", "Folder", "LikedByInformation", "ParentList", "Properties", "Versions",  "OData__ColorTag", "FirstUniqueAncestorSecurableObject", "RoleAssignments", "AttachmentFiles", "ContentType", "GetDlpPolicyTip", "FieldValuesAsHtml", "FieldValuesAsText"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns1",{ "Title", "Modified", "Created", "NPI Trial", "Pattern", "PLN", "Customer Code", "Customer Name", "Country", "Region", "Plant", "Quantity", "Priority", "Status", "DrawingImage", "Comments", "RFQ Date", "PO Date", "Tool Date", "Manufacturing Date", "Shipment Date", "Pieces on Site Date", "Trial Start Date", "Completion Date", "Next Remainder Date", "ID", "RFQ to PO Blocker", "PO to Tool RM Blocker", "Tool RM to Mfg Blocker", "Mfg to On Site Blocker", "On Site to Trial Blocker"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns",{"Title"}),
+				    #"Changed Type_1" = Table.TransformColumnTypes(#"Removed Columns2",{{"Modified", type datetime}, {"Created", type date}, {"NPI Trial", type text}, {"Pattern", type text}, {"PLN", type text}, {"Customer Code", Int64.Type}, {"Customer Name", type text}, {"Country", type text}, {"Region", type text}, {"Plant", type text}, {"Quantity", Int64.Type}, {"Priority", type text}, {"Status", type text}, {"RFQ Date", type date}, {"PO Date", type date}, {"Tool Date", type date}, {"Manufacturing Date", type date}, {"Shipment Date", type date}, {"Pieces on Site Date", type date}, {"Trial Start Date", type date}, {"Completion Date", type date}, {"Next Remainder Date", type date}, {"ID", Int64.Type}, {"RFQ to PO Blocker", type text}, {"PO to Tool RM Blocker", type text}, {"Tool RM to Mfg Blocker", type text}, {"Mfg to On Site Blocker", type text}, {"On Site to Trial Blocker", type text}}),
+				    #"Duplicated Column2" = Table.DuplicateColumn(#"Changed Type_1", "NPI Trial", "NPI Trial - Copy"),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Duplicated Column2",{"Modified", "Created", "NPI Trial - Copy", "NPI Trial", "Pattern", "PLN", "Customer Code", "Customer Name", "Country", "Region", "Plant", "Quantity", "Priority", "Status", "DrawingImage", "Comments", "RFQ Date", "PO Date", "Tool Date", "Manufacturing Date", "Shipment Date", "Pieces on Site Date", "Trial Start Date", "Completion Date", "Next Remainder Date", "ID", "RFQ to PO Blocker", "PO to Tool RM Blocker", "Tool RM to Mfg Blocker", "Mfg to On Site Blocker", "On Site to Trial Blocker", "Author", "Editor"}),
+				    #"Split Column by Positions" = Table.SplitColumn(#"Reordered Columns1", "NPI Trial - Copy", Splitter.SplitTextByPositions({5}), {"NPI Trial - Copy.1"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Positions",{{"NPI Trial - Copy.1", type text}}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Changed Type1",{"Modified", "Created", "NPI Trial", "NPI Trial - Copy.1", "Pattern", "PLN", "Customer Code", "Customer Name", "Country", "Region", "Plant", "Quantity", "Priority", "Status", "DrawingImage", "Comments", "RFQ Date", "PO Date", "Tool Date", "Manufacturing Date", "Shipment Date", "Pieces on Site Date", "Trial Start Date", "Completion Date", "Next Remainder Date", "ID", "RFQ to PO Blocker", "PO to Tool RM Blocker", "Tool RM to Mfg Blocker", "Mfg to On Site Blocker", "On Site to Trial Blocker", "Author", "Editor"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Reordered Columns2",{{"NPI Trial - Copy.1", "NPI Trial Name"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns3", "RFQ-PO days number", each Duration.Days([PO Date]-[RFQ Date])),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"RFQ-PO days number", Int64.Type}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type2", "PO-TOOL days number", each Duration.Days([Tool Date]-[PO Date])),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom1",{{"PO-TOOL days number", Int64.Type}}),
+				    #"Added Custom2" = Table.AddColumn(#"Changed Type3", "TOOL-MFG days number", each Duration.Days([Manufacturing Date]-[Tool Date])),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Added Custom2",{{"TOOL-MFG days number", Int64.Type}}),
+				    #"Added Custom3" = Table.AddColumn(#"Changed Type4", "MFG-ONSITE days number", each Duration.Days([Pieces on Site Date]-[Manufacturing Date])),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "ONSITE-TRIAL days number", each Duration.Days([Trial Start Date]-[Pieces on Site Date])),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom4",{{"ONSITE-TRIAL days number", Int64.Type}, {"MFG-ONSITE days number", Int64.Type}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type5", "Custom", each if [Status] = "Trial" then 6 else if [Status] = "Tool" then 3 else if [Status] = "Pieces on Site" then 5 else if [Status] = "Complete" then 7 else if [Status] = "Manufacturing" then 4 else if [Status] = "RFQ" then 1 else if [Status] = "PO" then 2 else null, type number),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Added Conditional Column",{{"Custom", "status index"}}),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Renamed Columns4", "Pattern", "Pattern - Copy"),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Duplicated Column1", "Pattern distinct", each Text.Combine({[#"Pattern - Copy"], Text.From([ID], "en-GB")}, " "), type text),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Inserted Merged Column",{"Pattern - Copy"}),
+				    #"Added Custom5" = Table.AddColumn(#"Removed Columns3", "Trial status", each if [Completion Date]=null then "active" else "complete"),
+				    #"Reordered Columns3" = Table.ReorderColumns(#"Added Custom5",{"Modified", "Created", "NPI Trial", "NPI Trial Name", "Pattern", "PLN", "Customer Code", "Customer Name", "Country", "Region", "Plant", "Quantity", "Priority", "Status", "DrawingImage", "Comments", "RFQ Date", "PO Date", "Tool Date", "Manufacturing Date", "Shipment Date", "Pieces on Site Date", "Trial Start Date", "Completion Date", "Trial status", "Next Remainder Date", "ID", "RFQ to PO Blocker", "PO to Tool RM Blocker", "Tool RM to Mfg Blocker", "Mfg to On Site Blocker", "On Site to Trial Blocker", "Author", "Editor", "RFQ-PO days number", "PO-TOOL days number", "TOOL-MFG days number", "MFG-ONSITE days number", "ONSITE-TRIAL days number", "status index", "Pattern distinct"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Reordered Columns3","Europe","EMEA",Replacer.ReplaceText,{"Region"}),
+				    #"Inserted Merged Column1" = Table.AddColumn(#"Replaced Value", "Merged", each Text.Combine({[NPI Trial Name],[Pattern distinct]}, " : "), type text),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Inserted Merged Column1",{{"Merged", "TrialPatternId"}}),
+				    #"Added Custom6" = Table.AddColumn(#"Renamed Columns5", "TRIAL-COMPLETE days number", each Duration.Days([Completion Date]-[Trial Start Date])),
+				    #"Added Custom7" = Table.AddColumn(#"Added Custom6", "COMPLETE days number", each Duration.Days( DateTime.Date(DateTime.LocalNow())-[Completion Date])),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Added Custom7",{{"TRIAL-COMPLETE days number", Int64.Type}, {"COMPLETE days number", Int64.Type}})
+				in
+				    #"Changed Type6"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

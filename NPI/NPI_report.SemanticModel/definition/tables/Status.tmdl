@@ -1,0 +1,66 @@
+table Status
+	lineageTag: 1b15d40d-d873-4345-b76a-f53ea8c21acf
+
+	column 'Status index'
+		dataType: double
+		lineageTag: eea9d90a-da33-4133-8185-99c13fbb8497
+		summarizeBy: none
+		sourceColumn: Status index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Status name'
+		dataType: string
+		lineageTag: bd0a6e2a-efc9-4f3f-8127-103f28990b87
+		summarizeBy: none
+		sourceColumn: Status name
+		sortByColumn: 'Status index'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status2
+		dataType: string
+		lineageTag: f579d592-a4c6-4053-a2f1-32b4c83fd4f7
+		summarizeBy: none
+		sourceColumn: Status2
+		sortByColumn: 'Status index'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Status = m
+		mode: import
+		source = ```
+				let
+				    Query2 = #table(
+				 type table
+				    [
+				        
+				        #"Number Column"=number, 
+				        #"Text Column"=text,
+				        #"Text2 Column"=text
+				
+				    ],
+				 {
+				  {1,"RFQ","waiting PO"},
+				  {2,"PO","waiting TOOL/RM"},
+				  {3,"Tool","waiting MFG"} ,
+				  {4,"Manufacturing","waiting DELIVERY"} ,
+				  {5,"Pieces on Site","waiting TRIAL"} ,
+				  {6,"Trial","waiting REPORT"} ,
+				  {7,"Complete","complete"} 
+				 }
+				),
+				    #"Renamed Columns" = Table.RenameColumns(Query2,{{"Number Column", "Status index"}, {"Text Column", "Status name"}, {"Text2 Column", "Status2"}}),
+				    #"Sorted Rows" = Table.Sort(#"Renamed Columns",{{"Status index", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+				```
+
+	annotation PBI_ResultType = Table
+

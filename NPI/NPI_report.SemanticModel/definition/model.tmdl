@@ -1,0 +1,31 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["NPI_source","Date","Key Measures","Status","Query1","Query2","Gantt"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_ef618c96-fadd-46b0-aa15-d39a2bb94408
+ref table Date
+ref table LocalDateTable_55e768af-8013-4448-9a45-c431d28e8bed
+ref table LocalDateTable_24081d49-225e-477f-b4ff-dce3a5efeb07
+ref table 'Key Measures'
+ref table Status
+ref table NPI_source
+ref table LocalDateTable_7fdbd284-f44c-45e8-8ced-b64968d14441
+ref table LocalDateTable_72cdf0d4-d18a-4d3e-84ef-bcc4d75ce0d6
+ref table LocalDateTable_9fccc4d2-92e0-4135-8a6c-f3f2f8c60098
+ref table LocalDateTable_52f84eca-dfc4-4cd9-8859-fa5002d9e967
+ref table Query2
+ref table LocalDateTable_e4d484d8-7f54-4401-abfe-9f260da6f257
+ref table Gantt
+
+ref cultureInfo en-US
+

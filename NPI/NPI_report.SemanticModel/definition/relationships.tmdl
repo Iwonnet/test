@@ -1,0 +1,73 @@
+relationship 1f21bd0d-702e-4591-822e-3c69525cae76
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.Date
+	toColumn: LocalDateTable_55e768af-8013-4448-9a45-c431d28e8bed.Date
+
+relationship ddcaa261-ad3d-4526-ab9f-982a681d5d78
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date.WeekEnding
+	toColumn: LocalDateTable_24081d49-225e-477f-b4ff-dce3a5efeb07.Date
+
+relationship 0b471968-60a3-470a-9f6f-5790ac25e4d7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: NPI_source.Modified
+	toColumn: LocalDateTable_7fdbd284-f44c-45e8-8ced-b64968d14441.Date
+
+relationship 35a84d3a-5420-45a1-a101-325dd97757ff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: NPI_source.Created
+	toColumn: LocalDateTable_72cdf0d4-d18a-4d3e-84ef-bcc4d75ce0d6.Date
+
+relationship 54e7df19-5a22-49ca-bdf8-d809d67101b5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: NPI_source.'Shipment Date'
+	toColumn: LocalDateTable_9fccc4d2-92e0-4135-8a6c-f3f2f8c60098.Date
+
+relationship 738061b4-00b5-49c6-bde0-66cb48e9c410
+	joinOnDateBehavior: datePartOnly
+	fromColumn: NPI_source.'Next Remainder Date'
+	toColumn: LocalDateTable_52f84eca-dfc4-4cd9-8859-fa5002d9e967.Date
+
+relationship c8403a1a-bfe8-44b2-8013-6b9457d4c906
+	fromColumn: NPI_source.Status
+	toColumn: Status.'Status name'
+
+relationship 72c6c193-dc1b-4b57-a80a-30196c2472bb
+	fromColumn: NPI_source.'RFQ Date'
+	toColumn: Date.Date
+
+relationship 07d31aa7-a2b2-4db6-b55a-2c07b45f3622
+	isActive: false
+	fromColumn: NPI_source.'PO Date'
+	toColumn: Date.Date
+
+relationship 8b358f96-192f-4247-8581-788e4873e319
+	isActive: false
+	fromColumn: NPI_source.'Tool Date'
+	toColumn: Date.Date
+
+relationship 6d0c667e-5a32-45ca-868f-2192c53a801f
+	isActive: false
+	fromColumn: NPI_source.'Manufacturing Date'
+	toColumn: Date.Date
+
+relationship 93ee225a-3c05-49e9-a2c2-316f5371dc80
+	isActive: false
+	fromColumn: NPI_source.'Pieces on Site Date'
+	toColumn: Date.Date
+
+relationship dece6d22-b1d8-4ca5-9200-f44cbb9ab49f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Query2.LastRefresh
+	toColumn: LocalDateTable_e4d484d8-7f54-4401-abfe-9f260da6f257.Date
+
+relationship 5face13d-7354-4f51-93eb-951665ed20f0
+	isActive: false
+	fromColumn: NPI_source.'Trial Start Date'
+	toColumn: Date.Date
+
+relationship 136f4379-6857-46ef-9981-aa73dc421af2
+	isActive: false
+	fromColumn: NPI_source.'Completion Date'
+	toColumn: Date.Date
+

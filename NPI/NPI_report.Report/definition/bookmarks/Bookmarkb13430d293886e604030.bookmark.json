@@ -1,0 +1,194 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Clear filters 11",
+  "name": "Bookmarkb13430d293886e604030",
+  "options": {
+    "targetVisualNames": [
+      "38446bd378d4bdc754ba"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSection028f434086a7b100507a",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "Filter93d4902dd1c44cac9329",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "NPI_source"
+                }
+              },
+              "Property": "NPI Trial Name"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "Filtera380cd239c58c26ded0f",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "NPI_source"
+                }
+              },
+              "Property": "Region"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "Filter1c51ffe837e8e475a545",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "NPI_source"
+                }
+              },
+              "Property": "Pattern"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "Filter4f008663260ba0a1e6c5",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "NPI_source"
+                }
+              },
+              "Property": "Customer Name"
+            }
+          },
+          "howCreated": 1
+        }
+      ]
+    },
+    "sections": {
+      "ReportSection028f434086a7b100507a": {
+        "filters": {
+          "byName": {
+            "Filter292d3813023696530609": {
+              "name": "Filter292d3813023696530609",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "s",
+                    "Entity": "Status",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "s"
+                                    }
+                                  },
+                                  "Property": "Status2"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'complete'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Status"
+                    }
+                  },
+                  "Property": "Status2"
+                }
+              },
+              "howCreated": 1
+            }
+          },
+          "byExpr": [
+            {
+              "name": "Filtera354bdab485c2193ae95",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPI_source"
+                    }
+                  },
+                  "Property": "NPI Trial Name"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "Filter5de432012c5410084eec",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NPI_source"
+                    }
+                  },
+                  "Property": "PLN"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {}
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

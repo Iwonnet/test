@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 490.26717557251914,
+            "y": 40.316793893129784
+          },
+          "nodeIndex": "NPI_source",
+          "nodeLineageTag": "44b6e38d-eba8-46a3-854e-c39e486fdb3e",
+          "size": {
+            "height": 854.31297709923672,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 980.66412213740477,
+            "y": 142.07633587786256
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "e27078b6-49d8-4a84-aefb-2ade7656862b",
+          "size": {
+            "height": 552,
+            "width": 274
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 443.4503816793893
+          },
+          "nodeIndex": "Key Measures",
+          "nodeLineageTag": "57c13ca8-0c72-4449-882c-5de5b81434d9",
+          "size": {
+            "height": 432.28244274809163,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 145.83969465648875,
+            "y": 221.19465648854964
+          },
+          "nodeIndex": "Status",
+          "nodeLineageTag": "1b15d40d-d873-4345-b76a-f53ea8c21acf",
+          "size": {
+            "height": 163.19847328244271,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 24.366412213740347,
+            "y": 0
+          },
+          "nodeIndex": "Query2",
+          "nodeLineageTag": "530359e4-3f9a-44a6-a6d8-61249f8f4c4d",
+          "size": {
+            "height": 167.50381679389312,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1031.6641221374048,
+            "y": 0
+          },
+          "nodeIndex": "Gantt",
+          "nodeLineageTag": "ceab290e-6dfb-44f9-8fee-08d01b811922",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 92.907801418439718,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

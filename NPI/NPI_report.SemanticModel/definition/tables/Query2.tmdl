@@ -1,0 +1,41 @@
+table Query2
+	lineageTag: 530359e4-3f9a-44a6-a6d8-61249f8f4c4d
+
+	column LastRefresh
+		dataType: dateTime
+		formatString: d mmmm yyyy
+		lineageTag: 27608d15-db62-4cef-9a50-0c5f39221e50
+		summarizeBy: none
+		sourceColumn: LastRefresh
+
+		variation Variation
+			isDefault
+			relationship: dece6d22-b1d8-4ca5-9200-f44cbb9ab49f
+			defaultHierarchy: LocalDateTable_e4d484d8-7f54-4401-abfe-9f260da6f257.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Refresh date'
+		dataType: string
+		lineageTag: 55090275-292d-40d5-b072-231e451bc21b
+		summarizeBy: none
+		sourceColumn: Refresh date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Query2 = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table[LastRefresh=datetime], {{DateTime.LocalNow()}}),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"LastRefresh", type date}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Refresh date", each Date.ToText([LastRefresh], [Format="ddMMMyy", Culture="en-US"]))
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+

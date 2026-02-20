@@ -1,0 +1,134 @@
+table Gantt
+	lineageTag: ceab290e-6dfb-44f9-8fee-08d01b811922
+
+	measure OverallStartDate = ```
+			
+			 CALCULATE(
+			     MIN('NPI_source'[RFQ Date]),
+			     ALL('Date')
+			     )
+			```
+		formatString: General Date
+		lineageTag: 181639de-3b5c-45e3-b3e0-47c2cbef734a
+
+	measure PaddingLeft =
+			
+			VAR OverallStartDate = [OverallStartDate]
+			VAR StartDate =
+			    CALCULATE(
+			        MIN('NPI_source'[RFQ Date]),
+			        REMOVEFILTERS('Date')
+			    )
+			VAR Result = INT([OverallStartDate]-[StartDate])
+			RETURN
+			    Result
+		formatString: 0
+		lineageTag: 6fb672dd-2a7c-47dc-aece-7e61323b1c2e
+
+	measure 'CL - Today' = ```
+			
+			 VAR DayToday = TODAY()
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Result = INT(DayToday - [OverallStartDate])
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: b13a44df-5575-4e69-b44a-ca66fcfb0348
+
+	measure 'CL - Month1' = ```
+			
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Month1 = EOMONTH([OverallStartDate],0)+1
+			 VAR Result = INT(Month1 - OveralStartDate )
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: 7b180082-cf36-4d2f-8fae-54adf8551398
+
+	measure EndOfMonth = EOMONTH([OverallStartDate],12)+1
+		formatString: General Date
+		lineageTag: 526a1a42-da66-42fe-bc6a-629ad256c155
+
+	measure 'CL - Month2' = ```
+			
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Month2 = EOMONTH([OverallStartDate],12)+1
+			 VAR Result = INT(Month2 - OveralStartDate )
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: c3a8cbb4-4843-45c3-8199-4291a098aacf
+
+	measure Month1 = EOMONTH([OverallStartDate],12)+1
+		formatString: General Date
+		lineageTag: ad3731b6-a864-428a-a2c2-53b1e75baa3f
+
+	measure 'CL - Month3' = ```
+			
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Month3 = EOMONTH([OverallStartDate],24)+1
+			 VAR Result = INT(Month3 - OveralStartDate )
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: 205506e2-97be-47f9-8e53-0df9770a0e3b
+
+	measure 'CL - Month4' = ```
+			
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Month4 = EOMONTH([OverallStartDate],36)+1
+			 VAR Result = INT(Month4 - OveralStartDate )
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: 519f09d9-4c75-4b60-8fec-b25711458fc7
+
+	measure Today = ```
+			TODAY() 
+			```
+		formatString: General Date
+		lineageTag: 7e1cb983-86fc-475f-a51b-e1be35910424
+
+	measure 'Nr Today - Overall' = INT([Today]-[OverallStartDate] )
+		formatString: 0
+		lineageTag: b774bc2d-1ad3-4431-90a0-252d24e7b486
+
+	measure 'CL - Month5' = ```
+			
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Month5 = EOMONTH([OverallStartDate],48)+1
+			 VAR Result = INT(Month5 - OveralStartDate )
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: d84b7ab9-48ce-411c-a260-aeccedd1423a
+
+	measure 'CL - Month6' = ```
+			
+			 VAR OveralStartDate = [OverallStartDate]
+			 VAR Month6 = EOMONTH([OverallStartDate],60)+1
+			 VAR Result = INT(Month6 - OveralStartDate )
+			 RETURN
+			    Result
+			```
+		formatString: 0
+		lineageTag: ea99b45e-5400-469a-a90c-8a8bea0a7de2
+
+	partition Gantt = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
