@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 248,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 500,
+            "y": 4
+          },
+          "nodeIndex": "FactSales",
+          "nodeLineageTag": "f304a27e-0a72-4505-b406-f7ee63ab49ad",
+          "size": {
+            "height": 687,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 67,
+            "y": 418
+          },
+          "nodeIndex": "DimStore",
+          "nodeLineageTag": "85aa5477-8f4d-41e1-9ea4-f76246c8c7fd",
+          "size": {
+            "height": 857,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 21,
+            "y": 11.5
+          },
+          "nodeIndex": "DimChannel",
+          "nodeLineageTag": "2dfa979f-6815-4d34-9f7a-49a3bbc44b64",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 912,
+            "y": 0
+          },
+          "nodeIndex": "DimProduct",
+          "nodeLineageTag": "9678d83c-8a2f-4527-8cce-acbf404710c3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 903,
+            "y": 460.5
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "fafacd3e-9f54-4c12-a34c-1085ab88e400",
+          "size": {
+            "height": 356,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1166,
+            "y": 585.5
+          },
+          "nodeIndex": "MyMeasures",
+          "nodeLineageTag": "4375fd81-3022-49a9-b014-a15e9e9a4d97",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1204,
+            "y": 300.5
+          },
+          "nodeIndex": "Trend",
+          "nodeLineageTag": "8533f102-12f6-4340-8165-3dc4c97732ca",
+          "size": {
+            "height": 259,
+            "width": 234
+          },
+          "zIndex": 7
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

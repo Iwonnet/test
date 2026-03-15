@@ -1,0 +1,21 @@
+relationship AutoDetected_bf8c451c-4528-43de-a1fc-4adbce400313
+	fromColumn: FactSales.channelKey
+	toColumn: DimChannel.ChannelKey
+
+relationship AutoDetected_186dd093-275b-4e70-94c8-15769d9c2f91
+	fromColumn: FactSales.StoreKey
+	toColumn: DimStore.StoreKey
+
+relationship AutoDetected_bcdabf2c-e6f7-4f62-bd24-dc270a0e72db
+	fromColumn: FactSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship c1eee960-cffa-f95b-9273-b9fa0a919abc
+	fromColumn: FactSales.DateKey
+	toColumn: Date.Date
+
+relationship AutoDetected_eeaf3037-b1b0-42b6-89ad-d5d88c02e318
+	crossFilteringBehavior: bothDirections
+	fromColumn: DimProduct.BrandName
+	toColumn: Trend.Brand
+

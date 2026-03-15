@@ -1,0 +1,75 @@
+table DimChannel
+	lineageTag: 2dfa979f-6815-4d34-9f7a-49a3bbc44b64
+
+	column ChannelKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fc687bbe-a7ab-40a4-82c8-1898dab22f33
+		summarizeBy: none
+		sourceColumn: ChannelKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelLabel
+		dataType: string
+		lineageTag: b0170e1e-0a9e-4edc-855b-7eb3541bccd6
+		summarizeBy: none
+		sourceColumn: ChannelLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelName
+		dataType: string
+		lineageTag: 5c9807bf-2176-409b-b107-0937f04a6b68
+		summarizeBy: none
+		sourceColumn: ChannelName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChannelDescription
+		dataType: string
+		lineageTag: d13aa167-7737-47d9-8ade-8c664fe0de74
+		summarizeBy: none
+		sourceColumn: ChannelDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETLLoadID
+		dataType: int64
+		formatString: 0
+		lineageTag: a06ec9ca-4199-4879-89e5-ebdb737afde5
+		summarizeBy: none
+		sourceColumn: ETLLoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fe5a5e42-f86b-409f-942b-8edd2babc92b
+		summarizeBy: none
+		sourceColumn: LoadDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column UpdateDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 87578e06-25ff-4f5f-9309-670891dd703e
+		summarizeBy: none
+		sourceColumn: UpdateDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimChannel = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("localhost", "ContosoRetailDW", [Query="SELECT  [ChannelKey]#(lf)      ,[ChannelLabel]#(lf)      ,[ChannelName]#(lf)      ,[ChannelDescription]#(lf)      ,[ETLLoadID]#(lf)      ,[LoadDate]#(lf)      ,[UpdateDate]#(lf)  FROM [ContosoRetailDW].[dbo].[DimChannel]#(lf)#(lf)#(lf)"])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

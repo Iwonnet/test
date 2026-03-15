@@ -1,0 +1,204 @@
+table MyMeasures
+	lineageTag: 4375fd81-3022-49a9-b014-a15e9e9a4d97
+
+	measure 'Forecast measure' = ```
+			
+			 VAR SalesLY = CALCULATE(SUM(FactSales[SalesAmount]),DATEADD('Date'[Date],-1,YEAR))
+			  VAR SalesLY2YrsAgo = CALCULATE(SUM(FactSales[SalesAmount]),DATEADD('Date'[Date],-2,YEAR))
+			   VAR SalesLY3YrsAgo = CALCULATE(SUM(FactSales[SalesAmount]),DATEADD('Date'[Date],-3,YEAR))
+			   VAR Factor = 1.35
+			RETURN
+			DIVIDE(SalesLY+SalesLY2YrsAgo+SalesLY3YrsAgo,3,0)*Factor
+			```
+		lineageTag: 2b8a31b3-db5b-409f-914b-7a7f2ee182dc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TotalSales = CALCULATE(SUM(FactSales[SalesAmount]))
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: 6e05c459-6f98-47d9-9569-1410d40f5058
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Forcast upper' =
+			
+			IF([Forecast measure]>[TotalSales],[TotalSales],[Forecast measure])
+		lineageTag: afdba104-3fe2-4144-b6d0-b5a119a0badc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Forcast Lower' =
+			
+			IF([Forecast measure]>[TotalSales],[Forecast measure],[TotalSales])
+		lineageTag: ae2033da-0591-43e3-9c86-f79958f45d42
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'SVG chart nr1' = ```
+			
+			
+			// Static line color - use %23 instead of # for Firefox compatibility 
+			VAR LineColour = "%23118DFF"
+			VAR PointColour = "white"
+			VAR Defs = "<defs>
+			    <linearGradient id='grad' x1='0' y1='25' x2='0' y2='50' gradientUnits='userSpaceOnUse'>
+			        <stop stop-color='#118DFF' offset='0' />
+			        <stop stop-color='#118DFF' offset='0.3' />
+			        <stop stop-color='white' offset='1' />
+			    </linearGradient>
+			</defs>"
+			// "Date" field used in this example along the X axis
+			VAR XMinDate = MIN('Date'[Date])
+			VAR XMaxDate = MAX('Date'[Date])
+			
+			// Obtain overall min and overall max measure values when evaluated for each date
+			VAR YMinValue = MINX(Values('Date'[Date]),CALCULATE([TotalSales]))
+			VAR YMaxValue = MAXX(Values('Date'[Date]),CALCULATE([TotalSales]))
+			
+			// Build table of X & Y coordinates and fit to 50 x 150 viewbox
+			VAR SparklineTable = ADDCOLUMNS(
+			    SUMMARIZE('Date','Date'[Date]),
+			        "X",INT(150 * DIVIDE('Date'[Date] - XMinDate, XMaxDate - XMinDate)),
+			        "Y",INT(50 * DIVIDE([TotalSales] - YMinValue,YMaxValue - YMinValue)))
+			
+			// Concatenate X & Y coordinates to build the sparkline
+			VAR Lines = CONCATENATEX(SparklineTable,[X] & "," & 50-[Y]," ", 'Date'[Date])
+			
+			// Last data points on the line
+			VAR LastSparkYValue = MAXX( FILTER(SparklineTable, 'Date'[Date] = XMaxDate), [Y])
+			VAR LastSparkXValue = MAXX( FILTER(SparklineTable, 'Date'[Date] = XMaxDate), [X])
+			
+			// Add to SVG, and verify Data Category is set to Image URL for this measure
+			VAR SVGImageURL = 
+			    "data:image/svg+xml;utf8," & 
+			    --- gradient---
+			    "<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='-7 -7 164 64'>" & Defs & 
+			     "<polyline fill='url(#grad)' fill-opacity='0.3' stroke='transparent' 
+			      stroke-width='0' points=' 0 50 " & Lines & 
+			      " 150 150 Z '/>" &
+			    --- Lines---
+			    "<polyline 
+			        fill='transparent' stroke='" & LineColour & "' 
+			        stroke-linecap='round' stroke-linejoin='round' 
+			        stroke-width='3' points=' " & Lines & 
+			      " '/>" &
+			    --- Last Point---
+			        "<circle cx='"& LastSparkXValue & "' cy='" & 50 - LastSparkYValue & "' r='4' stroke='" & LineColour & "' stroke-width='3' fill='" & PointColour & "' />" &
+			        "</svg>"
+			RETURN SVGImageURL
+			
+			```
+		lineageTag: e9c53a59-9cfb-427b-b6e6-80fe476f2c11
+		dataCategory: ImageUrl
+
+	measure 'SVG chart nr2' = ```
+			
+			
+			// line and area colour - use %23 instead of # for Firefox compatibility 
+			VAR Defs = "<defs>
+			    <linearGradient id='grad' x1='0' y1='25' x2='0' y2='50' gradientUnits='userSpaceOnUse'>
+			        <stop stop-color='navy' offset='0' />
+			        <stop stop-color='transparent' offset='1' />
+			    </linearGradient>
+			</defs>"
+			// "Date" field used in this example along the X axis
+			VAR XMinDate = MIN('Date'[Date])
+			VAR XMaxDate = MAX('Date'[Date])
+			
+			// Obtain overall min and overall max measure values when evaluated for each date
+			VAR YMinValue = MINX(Values('Date'[Date]),CALCULATE([TotalSales]))
+			VAR YMaxValue = MAXX(Values('Date'[Date]),CALCULATE([TotalSales]))
+			
+			// Build table of X & Y coordinates and fit to 50 x 150 viewbox
+			VAR SparklineTable = ADDCOLUMNS(
+			    SUMMARIZE('Date','Date'[Date]),
+			        "X",INT(150 * DIVIDE('Date'[Date] - XMinDate, XMaxDate - XMinDate)),
+			        "Y",INT(50 * DIVIDE([TotalSales] - YMinValue,YMaxValue - YMinValue)))
+			
+			// Concatenate X & Y coordinates to build the sparkline
+			VAR Lines = CONCATENATEX(SparklineTable,[X] & "," & 50-[Y]," ", 'Date'[Date])
+			
+			// Add to SVG, and verify Data Category is set to Image URL for this measure
+			VAR SVGImageURL = IF(HASONEVALUE('DimProduct'[BrandName]),
+			    "data:image/svg+xml;utf8," & 
+			    "<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 150 50'>" & Defs &
+			     "<polyline fill='url(#grad)' fill-opacity='0.3' stroke='navy' 
+			      stroke-width='3' points=' 0 50 " & Lines & 
+			      " 150 150 Z '/></svg>",
+			     BLANK())
+			RETURN SVGImageURL
+			```
+		lineageTag: ca9e8e29-ca66-4edb-af79-9f6a4d3aed25
+		dataCategory: ImageUrl
+
+	measure 'SVG SparkLine' = ```
+			
+			// Static line color - use %23 instead of # for Firefox compatibility 
+			VAR LineColour = "%23118DFF"
+			VAR PointColour = "white"
+			
+			// "Date" field used in this example along the X axis
+			VAR XMinDate = MIN('Date'[Date])
+			VAR XMaxDate = MAX('Date'[Date])
+			
+			// Obtain overall min and overall max measure values when evaluated for each date
+			VAR YMinValue = MINX(Values('Date'[Date]),CALCULATE([TotalSales]))
+			VAR YMaxValue = MAXX(Values('Date'[Date]),CALCULATE([TotalSales]))
+			
+			// Build table of X & Y coordinates and fit to 50 x 150 viewbox
+			VAR SparklineTable = ADDCOLUMNS(
+			    SUMMARIZE('Date','Date'[Date]),
+			        "X",INT(150 * DIVIDE('Date'[Date] - XMinDate, XMaxDate - XMinDate)),
+			        "Y",INT(50 * DIVIDE([TotalSales] - YMinValue,YMaxValue - YMinValue)))
+			
+			// Concatenate X & Y coordinates to build the sparkline
+			VAR Lines = CONCATENATEX(SparklineTable,[X] & "," & 50-[Y]," ", 'Date'[Date])
+			VAR PointTable=
+			    ADDCOLUMNS(
+			        SUMMARIZE('Date','Date'[Date]),
+			            "@Colour",IF([TotalSales]=YMaxValue,"Green",IF([TotalSales]=YMinValue,"Red",LineColour)),
+			        "@Points", "<circle cx='"&INT(150 * DIVIDE('Date'[Date] - XMinDate, XMaxDate - XMinDate))&"' cy='" & 50 -  INT(50 * DIVIDE([TotalSales] - YMinValue,YMaxValue - YMinValue)) & "' r='3' stroke='"&LineColour&"' stroke-width='1'  fill='"&LineColour&"'/>")
+			
+			// Last data points on the line
+			VAR LastSparkYValue = MAXX( FILTER(SparklineTable, 'Date'[Date] = XMaxDate), [Y])
+			VAR LastSparkXValue = MAXX( FILTER(SparklineTable, 'Date'[Date] = XMaxDate), [X])
+			
+			// Add to SVG, and verify Data Category is set to Image URL for this measure
+			VAR SVGImageURL = 
+			    "data:image/svg+xml;utf8," & 
+			    --- gradient---
+			    "<svg xmlns='http://www.w3.org/2000/svg' x='10px' y='0px' viewBox='7 -7 164 64'>" &
+			    --- Lines---
+			    "<polyline 
+			        fill='transparent' stroke='" & LineColour & "' 
+			        stroke-linecap='round' stroke-linejoin='round' 
+			        stroke-width='2' points=' " & Lines & 
+			      " '/>" &
+			    --- Last Point---
+			        CONCATENATEX(PointTable,[@Points]) &
+			        "<circle cx='"& LastSparkXValue & "' cy='" & 50 - LastSparkYValue & "' r='4' stroke='" & LineColour & "' stroke-width='3' fill='" & PointColour & "' />" &
+			        "</svg>"
+			        
+			RETURN SVGImageURL
+			```
+		lineageTag: b1d0d1b1-84d6-424c-90b0-c531c419c615
+		dataCategory: ImageUrl
+
+	measure Target = ```
+			CALCULATE(SUM('Trend'[Monthly target])) 
+			```
+		formatString: 0
+		lineageTag: dd0800fb-2b31-4431-bc19-4673ab4df4e8
+
+	partition MyMeasures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
